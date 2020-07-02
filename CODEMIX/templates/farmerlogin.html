@@ -10,26 +10,41 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SellBuy | FarmerLogin</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-
-        .nav-wrapper{
+        
+        a{
+            text-decoration: none;
+        }
+        #navStyle{
             background-image: linear-gradient(to right, #434343 0%, black 100%);
+            text-align: center;
+        }
+        #navStyle a{
+            color : grey;
+        }
+        #main-text{
+            font-family: 'Montserrat',sans-serif;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin: 0 auto 0 auto;
+            padding-top: 5px !important;
         }
         #btn{
             background-color: #333;
         }
         form{
-            margin-top: 100px;
+            margin-top: 50px;
         }
     </style>
   </head>
 
   <body>
 
-    <nav>
+    <nav id="navStyle">
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo  center">SELLBUY</a>
+            <a href="/"><h2 id="main-text">SELLBUY</h2></a>
             <!-- <a href="" class="sidenav-trigger" data-target='mobile-demo'><i class="material-icons right">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href=""></a></li>
@@ -38,8 +53,8 @@
         </div>
     </nav>
     <div class="container">
-        <h3>Create Account</h3>
-        <form action="farmerlogin" class="col s12">
+        <h3>Login</h3>
+        <form action="farmerlogin" class="col s12" method="POST">
             {% csrf_token %}
             <div class="input-field">
                 <input type="text" name="first_name">
@@ -51,10 +66,18 @@
                 <input type="password" name="password1" id="">
                 <label for="">Enter password</label>
             </div>
-            
+            <div>
+                {% for message in messages %}
+                <h5>{{message}}</h5>
+                {% endfor %}
+            </div>
             <input type="submit" value="Submit" class="btn" id="btn">
 
         </form>
+        <br><br>
+        <hr>
+        <h3>Don't have an account? Create one</h3>
+        <a href="/farmer/farmer" class="btn" id="btn">Create Account</a>
     </div>
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

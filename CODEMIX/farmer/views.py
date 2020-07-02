@@ -29,7 +29,7 @@ def farmer(request):
         password2=request.POST['password2']
 
         if password1==password2:
-            user=User.objets.create_user(first_name=first_name,last_name=last_name,email=aadhar,password=password1)
+            user=User.objects.create_user(first_name=first_name,last_name=last_name,username=aadhar,password=password1)
             user.save()
             return redirect('farmerlogin')
     
