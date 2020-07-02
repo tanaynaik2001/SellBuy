@@ -76,12 +76,12 @@
                 <input type="password" name="password2" id="">
                 <label for="">Confirm password</label>
             </div>
-            <div>
-                {% for message in messages %}
-                <h5>{{message}}</h5>
-                {% endfor %}
-            </div>
-                <input type="submit" value="Submit" class="btn" id="btn">
+            <input type="submit" value="Submit" class="btn" id="btn">
+                <div>
+                    {% for message in messages %}
+                    <h5>{{message}}</h5>
+                    {% endfor %}
+                </div>
 
         </form>
 
