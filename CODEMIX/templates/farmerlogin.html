@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+        .nav-wrapper{
+            background-image: linear-gradient(to right, #434343 0%, black 100%);
+        }
+        #btn{
+            background-color: #333;
+        }
+        form{
+            margin-top: 100px;
+        }
+    </style>
+  </head>
+
+  <body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo  center">SELLBUY</a>
+            <!-- <a href="" class="sidenav-trigger" data-target='mobile-demo'><i class="material-icons right">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href=""></a></li>
+            </ul> -->
+
+        </div>
+    </nav>
+    <div class="container">
+        <h3>Create Account</h3>
+        <form action="farmerlogin" class="col s12">
+            {% csrf_token %}
+            <div class="input-field">
+                <input type="text" name="first_name">
+                <label for="">First Name</label>
+            </div>
+            
+            
+            <div class="input-field">
+                <input type="password" name="password1" id="">
+                <label for="">Enter password</label>
+            </div>
+            
+            <input type="submit" value="Submit" class="btn" id="btn">
+
+        </form>
+    </div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
