@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+      a {
+        text-decoration: none;
+      }
+      #navStyle {
+        background-image: linear-gradient(to right, #434343 0%, black 100%);
+        text-align: center;
+      }
+      #navStyle a {
+        color: grey;
+      }
+      #main-text {
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 12px;
+        text-transform: uppercase;
+        margin: 0 auto 0 auto;
+        padding-top: 5px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navStyle">
+      <div class="nav-wrapper">
+        <a href="/" class="right center" id="headerPosition">
+          <h2 id="main-text">SellBuy</h2>
+        </a>
+        <a
+          style="cursor: pointer;"
+          data-target="slide-out"
+          class="sidenav-trigger show-on-large left"
+        >
+          <i class="material-icons">menu</i>
+        </a>
+        <ul id="slide-out" class="sidenav">
+          <li>
+            <a href="" class="sideBarLink">
+              <i class="material-icons">Add</i>Add a Post
+            </a>
+          </li>
+          <li>Hello</li>
+        </ul>
+      </div>
+    </nav>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      $(".sidenav").sidenav();
+    </script>
+  </body>
+</html>
