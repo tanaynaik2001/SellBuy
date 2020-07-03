@@ -39,3 +39,6 @@ def farmer(request):
         return redirect('/')
     else:
         return render(request,'farmer.html')
+
+def home(request):
+    return render(request, 'farmerHome.html')        
