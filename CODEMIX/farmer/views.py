@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
+from .models import addCrop
+from django.core.files.storage import FileSystemStorage
+
 # Create your views here.
 
 def farmerlogin(request):
@@ -41,4 +44,24 @@ def farmer(request):
         return render(request,'farmer.html')
 
 def home(request):
-    return render(request, 'farmerHome.html')        
+    return render(request, 'farmerHome.html')     
+
+def addPost(request):
+    return render(request, 'addPost.html')
+
+def addCropPost(request):
+    if request.method == 'POST':  
+        
+        cropNew = addCrop()
+        cropNew.addCropName = request.POST['crop_name']
+        cropNew.addCropDescription = request.POST['crop_info']
+        cropNew.addCropPrice = request.POST['price']
+
+        cropNew.addCropImg = request.POST['photo_input']
+        cropNew.save()
+
+        return render(request,'farmerHome.html')
+
+def seePost(request):
+    newCrop = addCrop.objects.all()
+    return render(request,'posts.html', {'newCrop': newCrop})
