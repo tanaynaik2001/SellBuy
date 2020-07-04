@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +15,7 @@
     />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>SellBuy | Buyer > Home</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
       a {
@@ -50,12 +51,23 @@
           <i class="material-icons">menu</i>
         </a>
         <ul id="slide-out" class="sidenav">
+          <li><img src="{% static 'images/buyer_avatar.png' %}" alt="" height="150" width="150"></li>
+          {% if user.is_authenticated %}
+          <li><a href="" class="sideBarLink"><i class="material-icons">account_circle</i>{{user.username}}</a>
+          </li>
+          {% endif %}
           <li>
-            <a href="" class="sideBarLink">
-              <i class="material-icons">Add</i>Add a Post
+            <a href="/farmer/seePost" class="sideBarLink">
+              <i class="material-icons">visibility</i>Show Posts
             </a>
           </li>
-          <li>Hello</li>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="/buyer/buyerlogout" class="sideBarLink">
+              <i class="material-icons">login</i>Logout
+            </a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>

@@ -57,19 +57,19 @@
         <form action="buyer" class="col s12" method="POST">
             {% csrf_token %}
             <div class="input-field">
-                <input type="text" name="username">
+                <input type="text" name="buyerusername">
                 <label for="">Username</label>
             </div>
             <div class="input-field">
-                <input type="email" name="email">
+                <input type="email" name="buyeremail">
                 <label for="">Enter your valid email address</label>
             </div>
             <div class="input-field">
-                <input type="password" name="password1" id="">
+                <input type="password" name="buyerpassword1" id="">
                 <label for="">Enter password</label>
             </div>
             <div class="input-field">
-                <input type="password" name="password2" id="">
+                <input type="password" name="buyerpassword2" id="">
                 <label for="">Confirm password</label>
             </div>
             <input type="submit" value="Submit" class="btn" id="btn">

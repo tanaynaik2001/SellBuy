@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.core.mail import EmailMessage
 from django.conf import settings
 import requests
 import json
@@ -10,51 +9,42 @@ import json
 
 
 def buyerlogin(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password1']
+    if request.method=='POST':
+        buyerusername = request.POST['buyerusername']
+        buyerpassword=request.POST['buyerpassword1']
 
-        user = auth.authenticate(username=username, password=password)
-        clientKey = request.POST['g-recaptcha-response']
-        secretKey = '6LdqfawZAAAAAFEFKeb_87e1PEiYyf40RKRi9TPf'
-
-        captchaData = {
-            'secret': secretKey,
-            'response': clientKey
-        }
-        r = requests.post(
-            'https://www.google.com/recaptcha/api/siteverify', data=captchaData)
-        response = json.loads(r.text)
-        verify = response['success']
-        print(f'Your success is {verify}')
+        user=auth.authenticate(username=buyerusername,password=buyerpassword)
 
         if user is not None:
-            auth.login(request, user)
-            return redirect('/')
+            auth.login(request,user)
+            return redirect('buyerhome')
 
         else:
-            messages.info(request, 'Invalid Credentials')
+            messages.info(request,'Invalid Credentials')
             return redirect('buyerlogin')
-    return render(request, 'buyerlogin.html')
+
+        
+    else:
+        return render(request,'buyerlogin.html')
 
 
 def buyer(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
+        buyerusername = request.POST['buyerusername']
+        buyeremail = request.POST['buyeremail']
+        buyerpassword1 = request.POST['buyerpassword1']
+        buyerpassword2 = request.POST['buyerpassword2']
 
-        if password1 == password2:
-            if User.objects.filter(username=username).exists():
+        if buyerpassword1 == buyerpassword2:
+            if User.objects.filter(username=buyerusername).exists():
                 messages.info(request, 'Username already taken')
                 return redirect('buyer')
-            elif User.objects.filter(email=email).exists():
+            elif User.objects.filter(email=buyeremail).exists():
                 messages.info(request, 'Email already taken')
                 return redirect('buyer')
             else:
                 user = User.objects.create_user(
-                    username=username, email=email, password=password1)
+                    username=buyerusername, email=buyeremail, password=buyerpassword1)
                 user.save()
 
                 subject = 'Successful Registration'
