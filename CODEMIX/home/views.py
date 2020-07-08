@@ -10,3 +10,6 @@ def price(request):
     crop = Crop.objects.all()
 
     return render(request, 'price.html',{'crop':crop})
+
+def about(request):
+    return render(request, 'about.html')    

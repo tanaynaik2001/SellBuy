@@ -10,4 +10,5 @@ urlpatterns=[
     path('addPost', views.addPost, name='addPost'),
     #path('addCropPost', views.addCropPost, name='addCropPost'),
     path('seePost', views.seePost, name='seePost'),
+    #path('deletePost', views.deletePost,name='deletePost'),
 ]

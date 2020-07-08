@@ -44,6 +44,46 @@
             margin-top:15px;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
           }
+          #farmerID{
+            color: grey;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+          }
+          .gapper{
+            padding-left: 10px;
+          }
+          #pushDownBtn{
+            padding-top: 12px;
+          }
+          .dark{
+            border: 1.5px #333 solid;
+            border-radius: 5px;
+            text-decoration: none;
+            color:#333;
+            padding: 3px 10px 5px 10px;
+            text-transform: uppercase;
+            font-family: 'Montserrat',Arial, Helvetica, sans-serif;
+            letter-spacing: 4px;
+            font-weight: bold;
+          }
+          .dark:hover{
+            background-color: #333;
+            color: white;
+          }
+          #contact{
+            border: 1.5px grey solid;
+            text-decoration: none;
+            color: grey;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 3px 10px 3px 10px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+            margin-top: 5px;
+          }
+          #contact:hover{
+            background-color: grey;
+            color: white;
+          }
       </style>
     </head>
 
@@ -54,25 +94,40 @@
         </div>
     </nav>  
       <div class="container" id='pushDown'>
-    <ul class="collection with-header">
+    <ul class="collection with-header" id='postList'>
       <li class='collection-header' id='header'>
         <h5>Crop Available</h5>
       </li>
       {% for crop in newCrop %}
       <li class="collection-item avatar">
         <img src="{{crop.addCropImg.url}}" alt="Crop-Image" class='circle materialboxed'>
+        <div>
         <span class="title">{{crop.addCropName}}</span>
+        {% if user.is_authenticated %}
+          <span id='farmerID' class='right'>Farmer ID : {{crop.addFarmerID}}</span>
+        {% endif %}
+        </div>
         <p>
-          Rs {{crop.addCropPrice}}/kg <br>
+          <div>
+            Rs {{crop.addCropPrice}}/kg
+            <span class="gapper">Quantity : {{crop.addCropQuantity}}kg</span>
+            <a class="right" id="contact" href='tel:011-24301812'>Call</a>
+          </div>
           {{crop.addCropDescription}} <br>
-          {% if user.is_authenticated %}
-          {{user.first_name}}
-          {% endif %}
         </p>
       </li>
       {% endfor %}
     </ul>
+
   </div>
+  <div class="container center-align" id='pushDownBtn'>
+    <a href='/' class='container dark'>Home</a>
+  </div>
+  <footer class='container'>
+        <p>
+          All rights reserved. SellBuy 2020 &copy;
+        </p>
+      </footer>
 
     <!-- jQuery cdn -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -82,6 +137,36 @@
         $(document).ready(function(){
           $('.materialboxed').materialbox();
         });
+
+        var list, i, switching, b, shouldSwitch;
+        list = document.getElementById("postList");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+          // Start by saying: no switching is done:
+          switching = false;
+          b = list.getElementsByTagName("LI");
+          // Loop through all list items:
+          for (i = 0; i < (b.length - 1); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Check if the next item should
+            switch place with the current item: */
+            if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+              /* If next item is alphabetically lower than current item,
+              mark as a switch and break the loop: */
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark the switch as done: */
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+          }
+        }
       </script>
     </body>
   </html>

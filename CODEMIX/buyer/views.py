@@ -32,6 +32,7 @@ def buyer(request):
     if request.method == 'POST':
         buyerusername = request.POST['buyerusername']
         buyeremail = request.POST['buyeremail']
+        buyernumber = request.POST['buyernumber']
         buyerpassword1 = request.POST['buyerpassword1']
         buyerpassword2 = request.POST['buyerpassword2']
 
@@ -44,7 +45,7 @@ def buyer(request):
                 return redirect('buyer')
             else:
                 user = User.objects.create_user(
-                    username=buyerusername, email=buyeremail, password=buyerpassword1)
+                    username=buyerusername, email=buyeremail, password=buyerpassword1, first_name=buyernumber)
                 user.save()
 
                 subject = 'Successful Registration'

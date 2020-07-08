@@ -35,6 +35,29 @@
         margin: 0 auto 0 auto;
         padding-top: 5px !important;
       }
+      #pushDown{
+        margin-top:15px;
+      }
+      #redBar:hover{
+        color: #e50914;
+      }
+      blockquote{
+        border-left: 5px solid #333;
+      }
+      #headers{
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color:grey;
+        margin: 0;
+        padding-bottom: 0;
+        padding-top: 1px;
+        background-image: linear-gradient(to right, #434343 0%, black 100%);
+      }
+      #pushDownList{
+        margin-top:25px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
     </style>
   </head>
   <body>
@@ -51,7 +74,7 @@
           <i class="material-icons">menu</i>
         </a>
         <ul id="slide-out" class="sidenav">
-          <li><img src="{% static 'images/buyer_avatar.png' %}" alt="" height="150" width="150"></li>
+          <li><img src="{% static 'images/buyer_avatar.png' %}" alt="" height="150" width="150" id='pushDown'></li>
           {% if user.is_authenticated %}
           <li><a href="" class="sideBarLink"><i class="material-icons">account_circle</i>{{user.username}}</a>
           </li>
@@ -63,14 +86,39 @@
           </li>
           {% if user.is_authenticated %}
           <li>
-            <a href="/buyer/buyerlogout" class="sideBarLink">
-              <i class="material-icons">login</i>Logout
+            <a href="/buyer/buyerlogout" class="sideBarLink" id='redBar'>
+              <i class="material-icons">logout</i>Log-Out
             </a>
           </li>
           {% endif %}
         </ul>
       </div>
     </nav>
+    <div class="container">
+      <ul class="collection with-header" id='pushDownList'>
+        <li class="collection-header" id='headers'><h4>Usage</h4></li>
+        <li class="collection-item">
+        <blockquote>This site shows you the available farmer posts.</blockquote>
+        <blockquote>Crop details like it's photo, price and description will be available on the post.</blockquote>
+        <blockquote>Click on the photo to enlarge it.</blockquote>
+        <blockquote>Click on show posts to see trustable farmer posts.</blockquote>
+        <blockquote>The 'CALL' button will place a call at SellBuy office to get farmer post details.</blockquote>
+      </li>
+      </ul>
+      <ul class="collection with-header" id='pushDownList'>
+        <li class="collection-header" id="headers"><h4>Trust</h4></li>
+        <li class="collection-item">
+          <blockquote>Guaranteed genuine farmers</blockquote>
+          <blockquote>Site ensures mutual benefit of buyer and the farmer</blockquote>
+        </li>
+      </ul>
+
+      <footer>
+        <p>
+          All rights reserved. SellBuy 2020 &copy;
+        </p>
+      </footer>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

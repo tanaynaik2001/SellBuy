@@ -51,7 +51,10 @@ def farmerlogout(request):
 
 
 def farmerhome(request):
-    return render(request, 'farmerHome.html')        
+    newCrop = addCrop.objects.all()
+    return render(request, 'farmerHome.html',{
+        'newCrop':newCrop
+    })        
 
 def home(request):
     return render(request, 'farmerHome.html')     
@@ -75,3 +78,5 @@ def seePost(request):
     return render(request,'posts.html',{
         'newCrop':newCrop
     })
+
+
